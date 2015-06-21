@@ -11,6 +11,24 @@ namespace nui {
 #define I iconAtlasInfo
 
 //---------------------------------------------------------------------------------------------------------------------
+void Graphics::pushState()
+{
+  nvgSave(N);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+void Graphics::popState()
+{
+  nvgRestore(N);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+void Graphics::intersectScissor(int x, int y, int w, int h)
+{
+  nvgIntersectScissor(N, x, y, w, h);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 void Graphics::drawShadow(int x, int y, int w, int h, int r, float alpha)
 {
   x -= r / 2;
@@ -19,7 +37,6 @@ void Graphics::drawShadow(int x, int y, int w, int h, int r, float alpha)
   h += r;
   
   nvgBeginPath(N);
-  nvgStrokeColor(N, nvgRGBf(1, 1, 1));
   nvgMoveTo(N, x, y - r);
   nvgLineTo(N, x + w, y - r);
   nvgArcTo(N, x + w + r, y - r, x + w + r, y, r);
@@ -36,7 +53,7 @@ void Graphics::drawShadow(int x, int y, int w, int h, int r, float alpha)
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-float Graphics::drawText(int x, int y, const char *text, bool shadow, HAlign halign, VAlign valign, bool monospace)
+float Graphics::drawText(int x, int y, const char *text, const char *end, bool shadow, HAlign halign, VAlign valign, bool monospace)
 {
   nvgFontSize(N, state.style->textSize);
   nvgTextAlign(N, static_cast<unsigned>(halign) | static_cast<unsigned>(valign));
@@ -45,11 +62,24 @@ float Graphics::drawText(int x, int y, const char *text, bool shadow, HAlign hal
   if (shadow)
   {
     nvgFillColor(N, nvgRGBf(0, 0, 0));
-    nvgText(N, x + 1, y + 1, text, nullptr);
+    nvgText(N, x + 1, y + 1, text, end);
   }
 
   nvgFillColor(N, state.style->textColor.nvg());
-  return nvgText(N, x, y, text, nullptr) - x;
+  return nvgText(N, x, y, text, end) - x;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+void Graphics::drawTextCursor(int x, int y)
+{
+  float a = 1.0f - clamp(powf(static_cast<float>(cursorBlinker), 5.0f), 0.0f, 1.0f);
+
+  nvgBeginPath(N);
+  nvgStrokeColor(N, nvgRGBAf(1.0f, 1.0f, 1.0f, a));
+  nvgStrokeWidth(N, 1.0f);
+  nvgMoveTo(N, x + 0.5f, y - state.style->textSize / 2);
+  nvgLineTo(N, x + 0.5f, y + state.style->textSize / 2);
+  nvgStroke(N);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -236,10 +266,40 @@ void Graphics::drawBevel(int px, int py, int width, int height, unsigned control
         bool selected = (controlState & nui::State::Selected) != 0;
 
         nvgBeginPath(N);
+        nvgStrokeWidth(N, 1.0f);
         nvgStrokeColor(N, state.style->color.nvgA(0.5f, 0.25f));
         nvgFillColor(N, state.style->secondaryColor.nvg(selected ? 0.8f : 1.0f));
         nvgRoundedRect(N, x, y, w, h, 3.0f);
         nvgFill(N);
+        nvgStroke(N);
+      }
+    }
+    break;
+
+    case Bevel::TextBox:
+    {
+      nvgBeginPath(N);
+      nvgStrokeWidth(N, 1.0f);
+      nvgStrokeColor(N, state.style->color.nvg(0.25f));
+      nvgFillColor(N, state.style->color.nvg(0.65f));
+      nvgRoundedRect(N, x, y, w, h, 3.0f);
+      nvgFill(N);
+      nvgStroke(N);
+
+      nvgBeginPath(N);
+      nvgStrokeColor(N, nvgRGBAf(0.0f, 0.0f, 0.0f, 0.125f));
+      nvgMoveTo(N, x + 1, y + h - 1);
+      nvgLineTo(N, x + 1, y + 3);
+      nvgArcTo(N, x + 1, y + 1, x + 3, y + 1, 2);
+      nvgLineTo(N, x + w - 1, y + 1);
+      nvgStroke(N);
+
+      if (controlState & (nui::State::Focused | nui::State::DeepFocused))
+      {
+        nvgBeginPath(N);
+        nvgStrokeWidth(N, 1.0f);
+        nvgStrokeColor(N, state.style->secondaryColor.nvg());
+        nvgRoundedRect(N, x, y, w, h, 3.0f);
         nvgStroke(N);
       }
     }

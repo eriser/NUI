@@ -24,6 +24,14 @@ namespace events
     unsigned buttonFlags;
   };
 
+  struct Key
+  {
+    bool down;
+    nui::Key key;
+    int character;
+    unsigned modKeyFlags;
+  };
+
   struct Resizing
   {
     int deltaX, deltaY;
@@ -47,7 +55,9 @@ struct Event
   {
     MouseMotion,
     MouseButton,
+    Key,
     Resizing,
+    SizeChanged,
     Moving,
     FocusChanged,
     HotChanged,
@@ -65,6 +75,7 @@ struct Event
   {
     events::MouseMotion mouseMotion;
     events::MouseButton mouseButton;
+    events::Key key;
     events::Resizing resizing;
     events::Moving moving;
     events::ParentChanged parentChanged;

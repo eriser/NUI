@@ -3,6 +3,13 @@
 namespace nui {
 
 //---------------------------------------------------------------------------------------------------------------------
+void Control::clear()
+{
+  while (!_children.empty())
+    _children.back()->setParent(nullptr);
+}
+
+//---------------------------------------------------------------------------------------------------------------------
 Control::ControlPointInfo Control::controlAtPoint(int x, int y)
 {
   ControlPointInfo result;
@@ -125,6 +132,9 @@ void Control::resizeStep(int dx, int dy)
 
   resizeStepChildren(dx, dy);
   arrangeChildren();
+
+  Event e(Event::Type::SizeChanged, this);
+  processEvent(e);
 }
 
 //---------------------------------------------------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <string>
+#include <functional>
 #include <nanovg/nanovg.h>
 
 #include "Config.h"
@@ -17,6 +18,43 @@ template <typename T> static T clampMinimum(T value, T min) { return (min && val
 template <typename T> static T clampMaximum(T value, T max) { return (max && value > max) ? max : value; }
 template <typename T> static T clampMinMax(T value, T min, T max) { return clampMinimum(clampMaximum(value, max), min); }
 template <typename T> static void swapValues(T &v1, T &v2) { T temp = v1; v1 = v2; v2 = temp; }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+typedef std::function<void(const std::string &str, size_t index, size_t offset, size_t length)> SplitStringCallback;
+
+static size_t splitString(const std::string &str, const std::string &separator, SplitStringCallback callback)
+{
+  if (str.empty())
+    return 0;
+
+  int sepLen = static_cast<int>(separator.length()) - 1;
+
+  if (sepLen < 0)
+    return 0;
+
+  int cursor = -1;
+  size_t len = str.length();
+  size_t count = 0;
+
+  do
+  {
+    size_t nextCursor = str.find(separator, cursor + 1);
+    if (nextCursor == std::string::npos)
+      break;
+
+    callback(str, count, static_cast<size_t>(cursor) + 1, static_cast<size_t>(nextCursor - cursor - 1));
+
+    ++count;
+    cursor = nextCursor + sepLen;
+
+  } while (true);
+
+  callback(str, count, static_cast<size_t>(cursor) + 1, static_cast<size_t>(len - cursor - 1));
+
+  ++count;
+  return count;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -46,6 +84,41 @@ enum class MouseButton
   Left = 1,
   Middle = Left << 1,
   Right = Middle << 1
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+enum class Key
+{
+  Unknown = 0,
+  Escape, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
+  Up, Down, Left, Right,
+  Tab, Backspace, Enter,
+  Insert, Delete, Home, End, PageUp, PageDown,
+  ShiftLeft, ShiftRight,
+  ControlLeft, ControlRight,
+  AltLeft, AltRight,
+  Character,
+  Last = Character,
+};
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+struct ModKey
+{
+  enum Flags
+  {
+    None = 0,
+    ShiftLeft = 1,
+    ShiftRight = ShiftLeft << 1,
+    ControlLeft = ShiftRight << 1,
+    ControlRight = ControlLeft << 1,
+    AltLeft = ControlRight << 1,
+    AltRight = AltLeft << 1,
+    Shift = ShiftLeft | ShiftRight,
+    Control = ControlLeft | ControlRight,
+    Alt = AltLeft | AltRight
+  };
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

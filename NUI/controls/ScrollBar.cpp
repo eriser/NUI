@@ -14,7 +14,8 @@ ScrollBar::ScrollBar(Control *parent, Docking docking)
 //---------------------------------------------------------------------------------------------------------------------
 void ScrollBar::draw(Graphics *graphics)
 {
-  graphics->drawBevel(0, 0, _rect.width, _rect.height, 0, Graphics::Bevel::ButtonDown);
+  if (!(_flags & Flat))
+    graphics->drawBevel(0, 0, _rect.width, _rect.height, 0, Graphics::Bevel::ButtonDown);
 
   if (_rect.height > _rect.width)
     graphics->drawBevel(0, _handleOffset, _rect.width, _handleSize, _state, Graphics::Bevel::ButtonUp);
@@ -138,6 +139,8 @@ void ScrollBar::setHandleOffset(int offset)
 {
   if (offset != _handleOffset)
   {
+    double oldValue = _value;
+
     int scrollArea = maximum(_rect.width, _rect.height);
     int handleHeight = minimum(_rect.width, _rect.height);
     double range = _maximum - _minimum;
@@ -152,6 +155,14 @@ void ScrollBar::setHandleOffset(int offset)
       offset = clamp(offset, 0, scrollArea - _handleSize);
       _handleOffset = offset;
       _value = _minimum + (static_cast<double>(_handleOffset) / static_cast<double>(scrollArea - _handleSize)) * range;
+    }
+
+    if (_value != oldValue)
+    {
+      Event e(Event::Type::ValueChanged, this);
+      
+      if (_parent)
+        _parent->processEvent(e);
     }
   }
 }

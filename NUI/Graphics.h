@@ -9,6 +9,7 @@ struct Graphics
   NVGcontext *nvgContext = nullptr;
   int normalFontID = -1;
   int monospaceFontID = -1;
+  double cursorBlinker = 0.0;
 
   struct IconAtlasInfo
   {
@@ -30,7 +31,7 @@ struct Graphics
         DefaultColor = 0x303438,
         DefaultSecondaryColor = 0x3060B0,
         DefaultTextColor = 0xFFFFFF,
-        DefaultTextSize = 13,
+        DefaultTextSize = 14,
         DefaultWindowButtonColor = 0x804020,
         DefaultTitleHeight = 22,
         DefaultMargin = 2,
@@ -41,14 +42,14 @@ struct Graphics
         DefaultWindowHeight = 300,
         DefaultControlWidth = 90,
         DefaultControlHeight = 22,
-        DefaultScrollBarSize = 14,
+        DefaultScrollBarSize = 16,
         CheckBoxSize = 18,
       };
 
       RGB color = DefaultColor;
       RGB secondaryColor = DefaultSecondaryColor;
       RGB textColor = DefaultTextColor;
-      float textSize = static_cast<float>(DefaultTextSize);
+      int textSize = DefaultTextSize;
 
       typedef nui::Ptr<Style> Ptr;
 
@@ -80,6 +81,7 @@ struct Graphics
     MenuItem,
     MenuBar,
     MenuBarItem,
+    TextBox,
   };
 
   enum class VAlign
@@ -97,9 +99,22 @@ struct Graphics
     Right = NVG_ALIGN_RIGHT
   };
 
+  void pushState();
+
+  void popState();
+
+  void intersectScissor(int x, int y, int w, int h);
+
   void drawShadow(int x, int y, int w, int h, int r, float alpha);
 
-  float drawText(int x, int y, const char *text, bool shadow, HAlign halign = HAlign::Center, VAlign valign = VAlign::Middle, bool monospace = false);
+  float drawText(int x, int y, const char *text, const char *end, bool shadow, HAlign halign = HAlign::Center, VAlign valign = VAlign::Middle, bool monospace = false);
+
+  float drawText(int x, int y, const char *text, bool shadow, HAlign halign = HAlign::Center, VAlign valign = VAlign::Middle, bool monospace = false)
+  {
+    return drawText(x, y, text, nullptr, shadow, halign, valign, monospace);
+  }
+
+  void drawTextCursor(int x, int y);
 
   void drawIcon(int cx, int cy, int iconID);
 

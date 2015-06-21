@@ -6,6 +6,7 @@ namespace nui {
 Root::Root(NVGcontext *nvgCtx)
   : Control()
   , _nvgContext(nvgCtx)
+  , _nvgGlyphPositionBuffer(new NVGglyphPosition[1024])
 {
   setFlags(getFlags() | CanDockChildren);
   setMargins(0);
@@ -22,6 +23,17 @@ Root::Root(NVGcontext *nvgCtx)
   _iconAtlasInfo.iconSize.set(18, 18);
   _iconAtlasInfo.iconStride.set(21, 21);
   _iconAtlasInfo.iconMargin = 4;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+void Root::tick(double time, double delta)
+{
+  _cursorBlinker += 2.0 * delta;
+
+  while (_cursorBlinker >= 2.0)
+    _cursorBlinker -= 2.0;
+
+  Super::tick(time, delta);
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -112,6 +124,7 @@ void Root::draw()
   graphics.normalFontID = _normalFontID;
   graphics.monospaceFontID = _monospaceFontID;
   graphics.iconAtlasInfo = _iconAtlasInfo;
+  graphics.cursorBlinker = _cursorBlinker;
 
   graphics.state.style = getStyle();
   graphics.state.alpha = 1.0f;
@@ -120,15 +133,54 @@ void Root::draw()
 }
 
 //---------------------------------------------------------------------------------------------------------------------
-Vec2 Root::measureText(float fontSize, const char *text) const
+Vec2 Root::measureText(int fontSize, const char *text, const char *endText, bool monospace) const
 {
-  float bounds[4];
   Vec2 result;
+  result.y = fontSize;
 
-  nvgFontSize(_nvgContext, fontSize);
-  nvgTextBounds(_nvgContext, 0, 0, text, nullptr, bounds);
+  nvgFontFaceId(_nvgContext, monospace ? _monospaceFontID : _normalFontID);
+  nvgFontSize(_nvgContext, static_cast<float>(fontSize));
+  
+  int num = nvgTextGlyphPositions(_nvgContext, 0, 0, text, endText, _nvgGlyphPositionBuffer, 1024);
 
-  result.set(static_cast<int>(bounds[2]), static_cast<int>(bounds[3]));
+  if (num)
+  {
+    result.x = static_cast<int>(_nvgGlyphPositionBuffer[num - 1].x);
+  }
+    
+  return result;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+int Root::measureIndex(int fontSize, const char *text, int x, int *charX, bool monospace) const
+{
+  if (x <= 0 || !text)
+    return 0;
+
+  int result = 0;
+  int lastPos = 0;
+
+  nvgFontFaceId(_nvgContext, monospace ? _monospaceFontID : _normalFontID);
+  nvgFontSize(_nvgContext, static_cast<float>(fontSize));
+  nvgTextGlyphPositions(_nvgContext, 0, 0, text, nullptr, _nvgGlyphPositionBuffer, 1024);
+
+  NVGglyphPosition *gp = _nvgGlyphPositionBuffer;
+  while (text[result] && result < 1024)
+  {
+    float middle = (gp->minx + gp->maxx) * 0.5f;
+    lastPos = static_cast<int>(gp->x);
+    if (x <= static_cast<int>(middle))
+      break;
+
+    lastPos = static_cast<int>(gp->maxx);
+
+    ++result;
+    ++gp;
+  }
+
+  if (charX)
+    *charX = lastPos;
+
   return result;
 }
 
@@ -176,14 +228,14 @@ void Root::setExclusiveControl(Control *control)
 //---------------------------------------------------------------------------------------------------------------------
 bool Root::eventMouseMotion(int x, int y)
 {
-  Vec2 delta = Vec2(x - _mousePosition.x, y - _mousePosition.y);
+  Vec2 delta = Vec2(x - _mouseState.position.x, y - _mouseState.position.y);
   ControlPointInfo hot = controlAtPoint(x, y);
 
-  switch (_mouseMode)
+  switch (_mouseState.mode)
   {
     case MouseMode::Normal:
     {
-      _mouseCursor = MouseCursor::Default;
+      _mouseState.cursor = MouseCursor::Default;
       setHotControl(hot.control, hot.edges);
 
       if (hot.edges)
@@ -194,22 +246,22 @@ bool Root::eventMouseMotion(int x, int y)
         {
           case Edge::Top:
           case Edge::Bottom:
-            _mouseCursor = MouseCursor::ResizeV;
+            _mouseState.cursor = MouseCursor::ResizeV;
             break;
 
           case Edge::Left:
           case Edge::Right:
-            _mouseCursor = MouseCursor::ResizeH;
+            _mouseState.cursor = MouseCursor::ResizeH;
             break;
 
           case Edge::TopLeft:
           case Edge::BottomRight:
-            _mouseCursor = MouseCursor::ResizeLR;
+            _mouseState.cursor = MouseCursor::ResizeLR;
             break;
 
           case Edge::TopRight:
           case Edge::BottomLeft:
-            _mouseCursor = MouseCursor::ResizeRL;
+            _mouseState.cursor = MouseCursor::ResizeRL;
             break;
         }
       }
@@ -239,7 +291,7 @@ bool Root::eventMouseMotion(int x, int y)
       if (_grabbedControl)
       {
         _grabbedControl->setPosition(_grabbedControl->getX() + delta.x, _grabbedControl->getY() + delta.y);
-        _mouseCursor = MouseCursor::Move;
+        _mouseState.cursor = MouseCursor::Move;
 
         Event e(Event::Type::Moving, _grabbedControl);
         e.moving.deltaX = delta.x;
@@ -305,18 +357,19 @@ bool Root::eventMouseMotion(int x, int y)
     e.mouseMotion.deltaY = delta.y;
     e.mouseMotion.grabbedX = _grabbedPosition.x - absPos.x;
     e.mouseMotion.grabbedY = _grabbedPosition.y - absPos.y;
-    e.mouseMotion.buttonFlags = _mouseButtonFlags;
+    e.mouseMotion.buttonFlags = _mouseState.buttonFlags;
     eventSender->processEvent(e);
   }
 
-  _mousePosition.set(x, y);
+  _mouseState.position.set(x, y);
   return false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 bool Root::eventMouseButtonDown(MouseButton button)
 {
-  _mouseButtonFlags |= static_cast<unsigned>(button);
+  _cursorBlinker = 0.0;
+  _mouseState.buttonFlags |= static_cast<unsigned>(button);
 
   // Test is we should get rid of exclusive control (menus, dropdowns, etc.)
   if (_exclusiveControl)
@@ -325,7 +378,7 @@ bool Root::eventMouseButtonDown(MouseButton button)
       setExclusiveControl(nullptr);
   }
 
-  switch (_mouseMode)
+  switch (_mouseState.mode)
   {
     case MouseMode::Normal:
     {
@@ -339,18 +392,18 @@ bool Root::eventMouseButtonDown(MouseButton button)
           if (_hotEdges == Edge::All)
           {
             setGrabbedControl(_hotControl, _hotEdges);
-            _mouseMode = MouseMode::Moving;
+            _mouseState.mode = MouseMode::Moving;
           }
           else if (_hotEdges & Edge::All)
           {
             setGrabbedControl(_hotControl, _hotEdges);
-            _mouseMode = MouseMode::Resizing;
+            _mouseState.mode = MouseMode::Resizing;
           }
           else
           {
             setGrabbedControl(_hotControl, 0);
             _hotControl->addState(State::Down);
-            _mouseMode = MouseMode::Down;
+            _mouseState.mode = MouseMode::Down;
           }
         }
       }
@@ -369,9 +422,9 @@ bool Root::eventMouseButtonDown(MouseButton button)
     Event e(Event::Type::MouseButton, eventSender);
     e.mouseButton.down = true;
     e.mouseButton.button = button;
-    e.mouseButton.buttonFlags = _mouseButtonFlags;
-    e.mouseButton.x = _mousePosition.x - absPos.x;
-    e.mouseButton.y = _mousePosition.y - absPos.y;
+    e.mouseButton.buttonFlags = _mouseState.buttonFlags;
+    e.mouseButton.x = _mouseState.position.x - absPos.x;
+    e.mouseButton.y = _mouseState.position.y - absPos.y;
     eventSender->processEvent(e);
   }
 
@@ -381,9 +434,9 @@ bool Root::eventMouseButtonDown(MouseButton button)
 //---------------------------------------------------------------------------------------------------------------------
 bool Root::eventMouseButtonUp(MouseButton button)
 {
-  _mouseButtonFlags &= ~static_cast<unsigned>(button);
+  _mouseState.buttonFlags &= ~static_cast<unsigned>(button);
 
-  switch (_mouseMode)
+  switch (_mouseState.mode)
   {
     case MouseMode::Down:
     {
@@ -413,17 +466,79 @@ bool Root::eventMouseButtonUp(MouseButton button)
     Event e(Event::Type::MouseButton, eventSender);
     e.mouseButton.down = false;
     e.mouseButton.button = button;
-    e.mouseButton.buttonFlags = _mouseButtonFlags;
-    e.mouseButton.x = _mousePosition.x - absPos.x;
-    e.mouseButton.y = _mousePosition.y - absPos.y;
+    e.mouseButton.buttonFlags = _mouseState.buttonFlags;
+    e.mouseButton.x = _mouseState.position.x - absPos.x;
+    e.mouseButton.y = _mouseState.position.y - absPos.y;
     eventSender->processEvent(e);
   }
 
   setGrabbedControl(nullptr, 0);
-  _mouseMode = MouseMode::Normal;
+  _mouseState.mode = MouseMode::Normal;
 
-  eventMouseMotion(_mousePosition.x, _mousePosition.y);
+  eventMouseMotion(_mouseState.position.x, _mouseState.position.y);
   return false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+bool Root::eventKeyDown(Key key, int character)
+{
+  _cursorBlinker = 0.0;
+
+  if (key == Key::Character && character < 256)
+  {
+    _keyboardState.pressedCharacters[character] = true;
+  }
+  else
+  {
+    _keyboardState.pressedKeys[static_cast<size_t>(key)] = true;
+    _keyboardState.updateModKeyFlags();
+  }
+
+  Control *eventSender = _focusedControl;
+  if (eventSender)
+  {
+    Event e(Event::Type::Key, eventSender);
+    e.key.down = true;
+    e.key.key = key;
+    e.key.character = character;
+    e.key.modKeyFlags = _keyboardState.modKeyFlags;
+    eventSender->processEvent(e);
+  }
+
+  return false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+bool Root::eventKeyUp(Key key, int character)
+{
+  if (key == Key::Character && character < 256)
+  {
+    _keyboardState.pressedCharacters[character] = false;
+  }
+  else
+  {
+    _keyboardState.pressedKeys[static_cast<size_t>(key)] = false;
+    _keyboardState.updateModKeyFlags();
+  }
+
+  Control *eventSender = _focusedControl;
+  if (eventSender)
+  {
+    Event e(Event::Type::Key, eventSender);
+    e.key.down = false;
+    e.key.key = key;
+    e.key.character = character;
+    e.key.modKeyFlags = _keyboardState.modKeyFlags;
+    eventSender->processEvent(e);
+  }
+
+  return false;
+}
+
+//---------------------------------------------------------------------------------------------------------------------
+bool Root::isTextInputRequired() const
+{
+  return _focusedControl ? (_focusedControl->getFlags() & Control::NeedsTextInput) != 0 : false;
 }
 
 //---------------------------------------------------------------------------------------------------------------------
@@ -448,7 +563,7 @@ void Root::setGrabbedControl(Control *control, unsigned edges)
         _grabbedControl->addState(State::Resizing);
 
       _grabbedRect = _grabbedControl->_rect;
-      _grabbedPosition = _mousePosition;
+      _grabbedPosition = _mouseState.position;
 
       _grabbedControl->addState(State::Grabbed);
       _grabbedControl->setDirty();

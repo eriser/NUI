@@ -12,6 +12,24 @@
 
 namespace nui {
 
+/* Forward declarations */
+class Control;
+class Box;
+class Button;
+class ComboBox;
+class CheckBox;
+class ListBox;
+class Menu;
+class MenuBar;
+class MenuItem;
+class Root;
+class ScrollBar;
+class TextBox;
+class TreeView;
+class Window;
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 class Control : public Object
 {
   friend class Root;
@@ -39,15 +57,19 @@ class Control : public Object
     enum class Type
     {
       Unknown = 0,
-      Root,
       Box,
       Button,
+      ComboBox,
       CheckBox,
-      Window,
-      ScrollBar,
+      ListBox,
       Menu,
       MenuItem,
       MenuBar,
+      Root,
+      ScrollBar,
+      TextBox,
+      TreeView,
+      Window,
     };
 
     virtual Type getType() const { return Type::Unknown; }
@@ -72,6 +94,8 @@ class Control : public Object
       PreDraw = PreserveDeepFocus << 1,
       Draw = PreDraw << 1,
       PostDraw = Draw << 1,
+      NeedsTextInput = PostDraw << 1,
+      Flat = NeedsTextInput << 1,
     };
 
     void setFlags(unsigned flags)
@@ -142,6 +166,8 @@ class Control : public Object
     }
 
     Root *getRoot() const { return _parent ? _parent->getRoot() : reinterpret_cast<Root *>(const_cast<Control *>(this)); }
+
+    void clear();
 
     size_t getNumChildren() const { return _children.size(); }
 
@@ -350,7 +376,13 @@ class Control : public Object
 
     void setStyle(Graphics::Style *style) { _style = style; }
 
-    Graphics::Style *getStyle() const { return _style; }
+    Graphics::Style *getStyle(bool recursive = false) const
+    {
+      if (!_style && recursive && _parent)
+        return _parent->getStyle(true);
+
+      return _style;
+    }
 
     void setAlpha(float a)
     {
