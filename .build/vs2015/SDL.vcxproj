@@ -1,0 +1,977 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug 32-bit|Win32">
+      <Configuration>Debug 32-bit</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug 32-bit|x64">
+      <Configuration>Debug 32-bit</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug 64-bit|Win32">
+      <Configuration>Debug 64-bit</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug 64-bit|x64">
+      <Configuration>Debug 64-bit</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release 32-bit|Win32">
+      <Configuration>Release 32-bit</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release 32-bit|x64">
+      <Configuration>Release 32-bit</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release 64-bit|Win32">
+      <Configuration>Release 64-bit</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release 64-bit|x64">
+      <Configuration>Release 64-bit</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{081D880B-7426-887C-FDA1-9E7C69AA937C}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SDL</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">
+    <OutDir>..\..\bin\Debug\</OutDir>
+    <IntDir>obj\32-bit\Debug\SDL\</IntDir>
+    <TargetName>SDL_debug</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">
+    <OutDir>..\..\bin\Debug\</OutDir>
+    <IntDir>obj\64-bit\Debug\SDL\</IntDir>
+    <TargetName>SDL_debug</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">
+    <OutDir>..\..\bin\Release\</OutDir>
+    <IntDir>obj\32-bit\Release\SDL\</IntDir>
+    <TargetName>SDL</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">
+    <OutDir>..\..\bin\Release\</OutDir>
+    <IntDir>obj\64-bit\Release\SDL\</IntDir>
+    <TargetName>SDL</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_WIN32;WIN32;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0601;WINVER=0x0601;NTDDI_VERSION=0x06010000;_MSC_VER=1900;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\srcSDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/wd"4503" %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_DEBUG;DEBUG;_WIN64;WIN64;_WIN32;WIN32;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0601;WINVER=0x0601;NTDDI_VERSION=0x06010000;_MSC_VER=1900;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\srcSDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/wd"4503" %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_WIN32;WIN32;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0601;WINVER=0x0601;NTDDI_VERSION=0x06010000;_MSC_VER=1900;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\srcSDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/wd"4503" %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_NDEBUG;NDEBUG;_WIN64;WIN64;_WIN32;WIN32;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0601;WINVER=0x0601;NTDDI_VERSION=0x06010000;_MSC_VER=1900;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\src;..\..\srcSDL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalOptions>/wd"4503" %(AdditionalOptions)</AdditionalOptions>
+      <CompileAs>CompileAsC</CompileAs>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\srcSDL\SDL.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_assert.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_assert_c.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_atomic.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_audio.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_bits.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_blendmode.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_clipboard.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_android.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_iphoneos.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_macosx.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_minimal.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_pandora.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_psp.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_windows.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_winrt.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_config_wiz.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_copying.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_cpuinfo.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_egl.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_endian.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_error.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_error_c.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_events.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_filesystem.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_gamecontroller.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_gesture.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_haptic.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_hints.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_internal.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_joystick.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_keyboard.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_keycode.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_loadso.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_log.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_main.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_messagebox.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_mouse.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_mutex.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_name.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_opengl.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_opengles.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_opengles2.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_pixels.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_platform.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_power.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_quit.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_rect.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_render.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_revision.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_rwops.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_scancode.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_shape.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_stdinc.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_surface.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_system.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_syswm.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_assert.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_common.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_compare.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_crc32.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_font.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_fuzzer.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_harness.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_images.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_log.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_md5.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_test_random.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_thread.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_timer.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_touch.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_types.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_version.h" />
+    <ClInclude Include="..\..\srcSDL\SDL_video.h" />
+    <ClInclude Include="..\..\srcSDL\audio\SDL_audio_c.h" />
+    <ClInclude Include="..\..\srcSDL\audio\SDL_audiodev_c.h" />
+    <ClInclude Include="..\..\srcSDL\audio\SDL_audiomem.h" />
+    <ClInclude Include="..\..\srcSDL\audio\SDL_sysaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\SDL_wave.h" />
+    <ClInclude Include="..\..\srcSDL\audio\alsa\SDL_alsa_audio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\android\SDL_androidaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\arts\SDL_artsaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\bsd\SDL_bsdaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\coreaudio\SDL_coreaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\directsound\SDL_directsound.h" />
+    <ClInclude Include="..\..\srcSDL\audio\directsound\directx.h" />
+    <ClInclude Include="..\..\srcSDL\audio\disk\SDL_diskaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\dsp\SDL_dspaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\dummy\SDL_dummyaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\esd\SDL_esdaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\fusionsound\SDL_fsaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\haiku\SDL_haikuaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\nas\SDL_nasaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\paudio\SDL_paudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\psp\SDL_pspaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\pulseaudio\SDL_pulseaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\qsa\SDL_qsa_audio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\sndio\SDL_sndioaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\sun\SDL_sunaudio.h" />
+    <ClInclude Include="..\..\srcSDL\audio\winmm\SDL_winmm.h" />
+    <ClInclude Include="..\..\srcSDL\audio\xaudio2\SDL_xaudio2_winrthelpers.h" />
+    <ClInclude Include="..\..\srcSDL\begin_code.h" />
+    <ClInclude Include="..\..\srcSDL\close_code.h" />
+    <ClInclude Include="..\..\srcSDL\core\android\SDL_android.h" />
+    <ClInclude Include="..\..\srcSDL\core\linux\SDL_evdev.h" />
+    <ClInclude Include="..\..\srcSDL\core\linux\SDL_udev.h" />
+    <ClInclude Include="..\..\srcSDL\core\windows\SDL_windows.h" />
+    <ClInclude Include="..\..\srcSDL\core\winrt\SDL_winrtapp_common.h" />
+    <ClInclude Include="..\..\srcSDL\core\winrt\SDL_winrtapp_direct3d.h" />
+    <ClInclude Include="..\..\srcSDL\core\winrt\SDL_winrtapp_xaml.h" />
+    <ClInclude Include="..\..\srcSDL\dynapi\SDL_dynapi.h" />
+    <ClInclude Include="..\..\srcSDL\dynapi\SDL_dynapi_overrides.h" />
+    <ClInclude Include="..\..\srcSDL\dynapi\SDL_dynapi_procs.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_clipboardevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_dropevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_events_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_gesture_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_keyboard_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_mouse_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_sysevents.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_touch_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\SDL_windowevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\events\blank_cursor.h" />
+    <ClInclude Include="..\..\srcSDL\events\default_cursor.h" />
+    <ClInclude Include="..\..\srcSDL\events\scancodes_darwin.h" />
+    <ClInclude Include="..\..\srcSDL\events\scancodes_linux.h" />
+    <ClInclude Include="..\..\srcSDL\events\scancodes_windows.h" />
+    <ClInclude Include="..\..\srcSDL\events\scancodes_xfree86.h" />
+    <ClInclude Include="..\..\srcSDL\file\cocoa\SDL_rwopsbundlesupport.h" />
+    <ClInclude Include="..\..\srcSDL\haptic\SDL_haptic_c.h" />
+    <ClInclude Include="..\..\srcSDL\haptic\SDL_syshaptic.h" />
+    <ClInclude Include="..\..\srcSDL\haptic\darwin\SDL_syshaptic_c.h" />
+    <ClInclude Include="..\..\srcSDL\haptic\windows\SDL_syshaptic_c.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\SDL_gamecontrollerdb.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\SDL_joystick_c.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\SDL_sysjoystick.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\android\SDL_sysjoystick_c.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\darwin\SDL_sysjoystick_c.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\iphoneos\SDLUIAccelerationDelegate.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\linux\SDL_sysjoystick_c.h" />
+    <ClInclude Include="..\..\srcSDL\joystick\windows\SDL_dxjoystick_c.h" />
+    <ClInclude Include="..\..\srcSDL\libm\math_libm.h" />
+    <ClInclude Include="..\..\srcSDL\libm\math_private.h" />
+    <ClInclude Include="..\..\srcSDL\power\uikit\SDL_syspower.h" />
+    <ClInclude Include="..\..\srcSDL\render\SDL_d3dmath.h" />
+    <ClInclude Include="..\..\srcSDL\render\SDL_sysrender.h" />
+    <ClInclude Include="..\..\srcSDL\render\SDL_yuv_sw_c.h" />
+    <ClInclude Include="..\..\srcSDL\render\direct3d11\SDL_render_winrt.h" />
+    <ClInclude Include="..\..\srcSDL\render\mmx.h" />
+    <ClInclude Include="..\..\srcSDL\render\opengl\SDL_glfuncs.h" />
+    <ClInclude Include="..\..\srcSDL\render\opengl\SDL_shaders_gl.h" />
+    <ClInclude Include="..\..\srcSDL\render\opengles\SDL_glesfuncs.h" />
+    <ClInclude Include="..\..\srcSDL\render\opengles2\SDL_gles2funcs.h" />
+    <ClInclude Include="..\..\srcSDL\render\opengles2\SDL_shaders_gles2.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_blendfillrect.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_blendline.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_blendpoint.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_draw.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_drawline.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_drawpoint.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_render_sw_c.h" />
+    <ClInclude Include="..\..\srcSDL\render\software\SDL_rotate.h" />
+    <ClInclude Include="..\..\srcSDL\thread\SDL_systhread.h" />
+    <ClInclude Include="..\..\srcSDL\thread\SDL_thread_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\generic\SDL_sysmutex_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\generic\SDL_systhread_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\psp\SDL_sysmutex_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\psp\SDL_systhread_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\pthread\SDL_sysmutex_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\pthread\SDL_systhread_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\stdcpp\SDL_sysmutex_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\stdcpp\SDL_systhread_c.h" />
+    <ClInclude Include="..\..\srcSDL\thread\windows\SDL_systhread_c.h" />
+    <ClInclude Include="..\..\srcSDL\timer\SDL_timer_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_RLEaccel_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_blit.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_blit_auto.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_blit_copy.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_blit_slow.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_egl_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_pixels_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_rect_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_shape_internals.h" />
+    <ClInclude Include="..\..\srcSDL\video\SDL_sysvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\android\SDL_androidclipboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\android\SDL_androidevents.h" />
+    <ClInclude Include="..\..\srcSDL\video\android\SDL_androidkeyboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\android\SDL_androidtouch.h" />
+    <ClInclude Include="..\..\srcSDL\video\android\SDL_androidvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\android\SDL_androidwindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoaclipboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoaevents.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoakeyboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoamessagebox.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoamodes.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoamouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoamousetap.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoaopengl.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoashape.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoavideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\cocoa\SDL_cocoawindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_WM.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_dyn.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_events.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_modes.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_mouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_opengl.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_render.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_shape.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_video.h" />
+    <ClInclude Include="..\..\srcSDL\video\directfb\SDL_DirectFB_window.h" />
+    <ClInclude Include="..\..\srcSDL\video\dummy\SDL_nullevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\dummy\SDL_nullframebuffer_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\dummy\SDL_nullvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_BWin.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bclipboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bevents.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bframebuffer.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bkeyboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bmodes.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bopengl.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\haiku\SDL_bwindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirdyn.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirevents.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirframebuffer.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirmouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_miropengl.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirsym.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\mir\SDL_mirwindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\pandora\SDL_pandora.h" />
+    <ClInclude Include="..\..\srcSDL\video\pandora\SDL_pandora_events.h" />
+    <ClInclude Include="..\..\srcSDL\video\psp\SDL_pspevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\psp\SDL_pspgl_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\psp\SDL_pspmouse_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\psp\SDL_pspvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\raspberry\SDL_rpievents_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\raspberry\SDL_rpimouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\raspberry\SDL_rpiopengles.h" />
+    <ClInclude Include="..\..\srcSDL\video\raspberry\SDL_rpivideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitappdelegate.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitevents.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitmessagebox.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitmodes.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitopengles.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitopenglview.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitview.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitviewcontroller.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\SDL_uikitwindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\uikit\keyinfotable.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylanddyn.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandmouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandopengles.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandsym.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandtouch.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\wayland\SDL_waylandwindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_msctf.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_vkeys.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsclipboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsevents.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsframebuffer.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowskeyboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsmessagebox.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsmodes.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsmouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsopengl.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsopengles.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsshape.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowsvideo.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\SDL_windowswindow.h" />
+    <ClInclude Include="..\..\srcSDL\video\windows\wmmsg.h" />
+    <ClInclude Include="..\..\srcSDL\video\winrt\SDL_winrtevents_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\winrt\SDL_winrtmouse_c.h" />
+    <ClInclude Include="..\..\srcSDL\video\winrt\SDL_winrtopengles.h" />
+    <ClInclude Include="..\..\srcSDL\video\winrt\SDL_winrtvideo_cpp.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11clipboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11dyn.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11events.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11framebuffer.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11keyboard.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11messagebox.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11modes.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11mouse.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11opengl.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11opengles.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11shape.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11sym.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11touch.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11video.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11window.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\SDL_x11xinput2.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\edid.h" />
+    <ClInclude Include="..\..\srcSDL\video\x11\imKStoUCS.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\srcSDL\SDL.c" />
+    <ClCompile Include="..\..\srcSDL\SDL_assert.c" />
+    <ClCompile Include="..\..\srcSDL\SDL_error.c" />
+    <ClCompile Include="..\..\srcSDL\SDL_hints.c" />
+    <ClCompile Include="..\..\srcSDL\SDL_log.c" />
+    <ClCompile Include="..\..\srcSDL\atomic\SDL_atomic.c" />
+    <ClCompile Include="..\..\srcSDL\atomic\SDL_spinlock.c" />
+    <ClCompile Include="..\..\srcSDL\audio\SDL_audio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\SDL_audiocvt.c" />
+    <ClCompile Include="..\..\srcSDL\audio\SDL_audiodev.c" />
+    <ClCompile Include="..\..\srcSDL\audio\SDL_audiotypecvt.c" />
+    <ClCompile Include="..\..\srcSDL\audio\SDL_mixer.c" />
+    <ClCompile Include="..\..\srcSDL\audio\SDL_wave.c" />
+    <ClCompile Include="..\..\srcSDL\audio\alsa\SDL_alsa_audio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\android\SDL_androidaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\arts\SDL_artsaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\bsd\SDL_bsdaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\coreaudio\SDL_coreaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\directsound\SDL_directsound.c" />
+    <ClCompile Include="..\..\srcSDL\audio\disk\SDL_diskaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\dsp\SDL_dspaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\dummy\SDL_dummyaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\esd\SDL_esdaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\fusionsound\SDL_fsaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\haiku\SDL_haikuaudio.cc" />
+    <ClCompile Include="..\..\srcSDL\audio\nas\SDL_nasaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\paudio\SDL_paudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\psp\SDL_pspaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\pulseaudio\SDL_pulseaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\qsa\SDL_qsa_audio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\sndio\SDL_sndioaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\sun\SDL_sunaudio.c" />
+    <ClCompile Include="..\..\srcSDL\audio\winmm\SDL_winmm.c" />
+    <ClCompile Include="..\..\srcSDL\audio\xaudio2\SDL_xaudio2.c" />
+    <ClCompile Include="..\..\srcSDL\audio\xaudio2\SDL_xaudio2_winrthelpers.cpp" />
+    <ClCompile Include="..\..\srcSDL\core\android\SDL_android.c" />
+    <ClCompile Include="..\..\srcSDL\core\linux\SDL_evdev.c" />
+    <ClCompile Include="..\..\srcSDL\core\linux\SDL_udev.c" />
+    <ClCompile Include="..\..\srcSDL\core\windows\SDL_windows.c" />
+    <ClCompile Include="..\..\srcSDL\core\winrt\SDL_winrtapp_common.cpp" />
+    <ClCompile Include="..\..\srcSDL\core\winrt\SDL_winrtapp_direct3d.cpp" />
+    <ClCompile Include="..\..\srcSDL\core\winrt\SDL_winrtapp_xaml.cpp" />
+    <ClCompile Include="..\..\srcSDL\cpuinfo\SDL_cpuinfo.c" />
+    <ClCompile Include="..\..\srcSDL\dynapi\SDL_dynapi.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_clipboardevents.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_dropevents.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_events.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_gesture.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_keyboard.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_mouse.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_quit.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_touch.c" />
+    <ClCompile Include="..\..\srcSDL\events\SDL_windowevents.c" />
+    <ClCompile Include="..\..\srcSDL\file\SDL_rwops.c" />
+    <ClCompile Include="..\..\srcSDL\filesystem\dummy\SDL_sysfilesystem.c" />
+    <ClCompile Include="..\..\srcSDL\filesystem\haiku\SDL_sysfilesystem.cc">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysfilesystem1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysfilesystem1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\filesystem\unix\SDL_sysfilesystem.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysfilesystem2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysfilesystem2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\filesystem\windows\SDL_sysfilesystem.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysfilesystem3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysfilesystem3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\filesystem\winrt\SDL_sysfilesystem.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysfilesystem4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysfilesystem4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysfilesystem4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\haptic\SDL_haptic.c" />
+    <ClCompile Include="..\..\srcSDL\haptic\darwin\SDL_syshaptic.c" />
+    <ClCompile Include="..\..\srcSDL\haptic\dummy\SDL_syshaptic.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syshaptic1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syshaptic1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syshaptic1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syshaptic1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\haptic\linux\SDL_syshaptic.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syshaptic2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syshaptic2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syshaptic2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syshaptic2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\haptic\windows\SDL_syshaptic.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syshaptic3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syshaptic3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syshaptic3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syshaptic3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\joystick\SDL_gamecontroller.c" />
+    <ClCompile Include="..\..\srcSDL\joystick\SDL_joystick.c" />
+    <ClCompile Include="..\..\srcSDL\joystick\android\SDL_sysjoystick.c" />
+    <ClCompile Include="..\..\srcSDL\joystick\bsd\SDL_sysjoystick.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysjoystick1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysjoystick1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysjoystick1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysjoystick1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\joystick\darwin\SDL_sysjoystick.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysjoystick2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysjoystick2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysjoystick2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysjoystick2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\joystick\dummy\SDL_sysjoystick.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysjoystick3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysjoystick3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysjoystick3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysjoystick3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\joystick\haiku\SDL_haikujoystick.cc" />
+    <ClCompile Include="..\..\srcSDL\joystick\linux\SDL_sysjoystick.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysjoystick4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysjoystick4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysjoystick4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysjoystick4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\joystick\psp\SDL_sysjoystick.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysjoystick5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysjoystick5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysjoystick5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysjoystick5.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\joystick\windows\SDL_dxjoystick.c" />
+    <ClCompile Include="..\..\srcSDL\joystick\windows\SDL_mmjoystick.c" />
+    <ClCompile Include="..\..\srcSDL\joystick\winrt\SDL_xinputjoystick.c" />
+    <ClCompile Include="..\..\srcSDL\libm\e_atan2.c" />
+    <ClCompile Include="..\..\srcSDL\libm\e_log.c" />
+    <ClCompile Include="..\..\srcSDL\libm\e_pow.c" />
+    <ClCompile Include="..\..\srcSDL\libm\e_rem_pio2.c" />
+    <ClCompile Include="..\..\srcSDL\libm\e_sqrt.c" />
+    <ClCompile Include="..\..\srcSDL\libm\k_cos.c" />
+    <ClCompile Include="..\..\srcSDL\libm\k_rem_pio2.c" />
+    <ClCompile Include="..\..\srcSDL\libm\k_sin.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_atan.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_copysign.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_cos.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_fabs.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_floor.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_scalbn.c" />
+    <ClCompile Include="..\..\srcSDL\libm\s_sin.c" />
+    <ClCompile Include="..\..\srcSDL\loadso\dlopen\SDL_sysloadso.c" />
+    <ClCompile Include="..\..\srcSDL\loadso\dummy\SDL_sysloadso.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysloadso1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysloadso1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysloadso1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysloadso1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\loadso\haiku\SDL_sysloadso.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysloadso2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysloadso2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysloadso2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysloadso2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\loadso\windows\SDL_sysloadso.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysloadso3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysloadso3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysloadso3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysloadso3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\power\SDL_power.c" />
+    <ClCompile Include="..\..\srcSDL\power\android\SDL_syspower.c" />
+    <ClCompile Include="..\..\srcSDL\power\haiku\SDL_syspower.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syspower1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syspower1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syspower1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syspower1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\power\linux\SDL_syspower.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syspower2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syspower2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syspower2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syspower2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\power\macosx\SDL_syspower.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syspower3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syspower3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syspower3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syspower3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\power\psp\SDL_syspower.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syspower4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syspower4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syspower4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syspower4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\power\windows\SDL_syspower.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syspower5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syspower5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syspower5.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syspower5.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\power\winrt\SDL_syspower.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syspower6.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syspower6.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syspower6.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syspower6.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\render\SDL_d3dmath.c" />
+    <ClCompile Include="..\..\srcSDL\render\SDL_render.c" />
+    <ClCompile Include="..\..\srcSDL\render\SDL_yuv_mmx.c" />
+    <ClCompile Include="..\..\srcSDL\render\SDL_yuv_sw.c" />
+    <ClCompile Include="..\..\srcSDL\render\direct3d\SDL_render_d3d.c" />
+    <ClCompile Include="..\..\srcSDL\render\direct3d11\SDL_render_d3d11.c" />
+    <ClCompile Include="..\..\srcSDL\render\direct3d11\SDL_render_winrt.cpp" />
+    <ClCompile Include="..\..\srcSDL\render\opengl\SDL_render_gl.c" />
+    <ClCompile Include="..\..\srcSDL\render\opengl\SDL_shaders_gl.c" />
+    <ClCompile Include="..\..\srcSDL\render\opengles\SDL_render_gles.c" />
+    <ClCompile Include="..\..\srcSDL\render\opengles2\SDL_render_gles2.c" />
+    <ClCompile Include="..\..\srcSDL\render\opengles2\SDL_shaders_gles2.c" />
+    <ClCompile Include="..\..\srcSDL\render\psp\SDL_render_psp.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_blendfillrect.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_blendline.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_blendpoint.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_drawline.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_drawpoint.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_render_sw.c" />
+    <ClCompile Include="..\..\srcSDL\render\software\SDL_rotate.c" />
+    <ClCompile Include="..\..\srcSDL\stdlib\SDL_getenv.c" />
+    <ClCompile Include="..\..\srcSDL\stdlib\SDL_iconv.c" />
+    <ClCompile Include="..\..\srcSDL\stdlib\SDL_malloc.c" />
+    <ClCompile Include="..\..\srcSDL\stdlib\SDL_qsort.c" />
+    <ClCompile Include="..\..\srcSDL\stdlib\SDL_stdlib.c" />
+    <ClCompile Include="..\..\srcSDL\stdlib\SDL_string.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_assert.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_common.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_compare.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_crc32.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_font.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_fuzzer.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_harness.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_imageBlit.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_imageBlitBlend.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_imageFace.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_imagePrimitives.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_imagePrimitivesBlend.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_log.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_md5.c" />
+    <ClCompile Include="..\..\srcSDL\test\SDL_test_random.c" />
+    <ClCompile Include="..\..\srcSDL\thread\SDL_thread.c" />
+    <ClCompile Include="..\..\srcSDL\thread\generic\SDL_syscond.c" />
+    <ClCompile Include="..\..\srcSDL\thread\generic\SDL_sysmutex.c" />
+    <ClCompile Include="..\..\srcSDL\thread\generic\SDL_syssem.c" />
+    <ClCompile Include="..\..\srcSDL\thread\generic\SDL_systhread.c" />
+    <ClCompile Include="..\..\srcSDL\thread\generic\SDL_systls.c" />
+    <ClCompile Include="..\..\srcSDL\thread\psp\SDL_syscond.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syscond1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syscond1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syscond1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syscond1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\psp\SDL_sysmutex.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysmutex1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysmutex1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysmutex1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysmutex1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\psp\SDL_syssem.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syssem1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syssem1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syssem1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syssem1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\psp\SDL_systhread.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systhread1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systhread1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systhread1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systhread1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\pthread\SDL_syscond.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syscond2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syscond2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syscond2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syscond2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\pthread\SDL_sysmutex.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysmutex2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysmutex2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysmutex2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysmutex2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\pthread\SDL_syssem.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syssem2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syssem2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syssem2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syssem2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\pthread\SDL_systhread.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systhread2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systhread2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systhread2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systhread2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\pthread\SDL_systls.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systls1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systls1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systls1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systls1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\stdcpp\SDL_syscond.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syscond3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syscond3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syscond3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syscond3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\stdcpp\SDL_sysmutex.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysmutex3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysmutex3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysmutex3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysmutex3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\stdcpp\SDL_systhread.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systhread3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systhread3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systhread3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systhread3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\windows\SDL_sysmutex.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_sysmutex4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_sysmutex4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_sysmutex4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_sysmutex4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\windows\SDL_syssem.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_syssem3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_syssem3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_syssem3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_syssem3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\windows\SDL_systhread.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systhread4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systhread4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systhread4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systhread4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\thread\windows\SDL_systls.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systls2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systls2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systls2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systls2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\timer\SDL_timer.c" />
+    <ClCompile Include="..\..\srcSDL\timer\dummy\SDL_systimer.c" />
+    <ClCompile Include="..\..\srcSDL\timer\haiku\SDL_systimer.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systimer1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systimer1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systimer1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systimer1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\timer\psp\SDL_systimer.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systimer2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systimer2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systimer2.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systimer2.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\timer\unix\SDL_systimer.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systimer3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systimer3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systimer3.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systimer3.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\timer\windows\SDL_systimer.c">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 32-bit|Win32'">$(IntDir)\SDL_systimer4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug 64-bit|x64'">$(IntDir)\SDL_systimer4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 32-bit|Win32'">$(IntDir)\SDL_systimer4.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release 64-bit|x64'">$(IntDir)\SDL_systimer4.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\..\srcSDL\video\SDL_RLEaccel.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_0.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_1.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_A.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_N.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_auto.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_copy.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_blit_slow.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_bmp.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_clipboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_egl.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_fillrect.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_pixels.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_rect.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_shape.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_stretch.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_surface.c" />
+    <ClCompile Include="..\..\srcSDL\video\SDL_video.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidclipboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidevents.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidgl.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidkeyboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidtouch.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidvideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\android\SDL_androidwindow.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_WM.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_dyn.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_events.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_modes.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_mouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_opengl.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_render.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_shape.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_video.c" />
+    <ClCompile Include="..\..\srcSDL\video\directfb\SDL_DirectFB_window.c" />
+    <ClCompile Include="..\..\srcSDL\video\dummy\SDL_nullevents.c" />
+    <ClCompile Include="..\..\srcSDL\video\dummy\SDL_nullframebuffer.c" />
+    <ClCompile Include="..\..\srcSDL\video\dummy\SDL_nullvideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bclipboard.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bevents.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bframebuffer.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bkeyboard.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bmodes.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bopengl.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bvideo.cc" />
+    <ClCompile Include="..\..\srcSDL\video\haiku\SDL_bwindow.cc" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_mirdyn.c" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_mirevents.c" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_mirframebuffer.c" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_mirmouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_miropengl.c" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_mirvideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\mir\SDL_mirwindow.c" />
+    <ClCompile Include="..\..\srcSDL\video\pandora\SDL_pandora.c" />
+    <ClCompile Include="..\..\srcSDL\video\pandora\SDL_pandora_events.c" />
+    <ClCompile Include="..\..\srcSDL\video\psp\SDL_pspevents.c" />
+    <ClCompile Include="..\..\srcSDL\video\psp\SDL_pspgl.c" />
+    <ClCompile Include="..\..\srcSDL\video\psp\SDL_pspmouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\psp\SDL_pspvideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\raspberry\SDL_rpievents.c" />
+    <ClCompile Include="..\..\srcSDL\video\raspberry\SDL_rpimouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\raspberry\SDL_rpiopengles.c" />
+    <ClCompile Include="..\..\srcSDL\video\raspberry\SDL_rpivideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylanddyn.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylandevents.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylandmouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylandopengles.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylandtouch.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylandvideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\wayland\SDL_waylandwindow.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsclipboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsevents.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsframebuffer.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowskeyboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsmessagebox.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsmodes.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsmouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsopengl.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsopengles.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsshape.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowsvideo.c" />
+    <ClCompile Include="..\..\srcSDL\video\windows\SDL_windowswindow.c" />
+    <ClCompile Include="..\..\srcSDL\video\winrt\SDL_winrtevents.cpp" />
+    <ClCompile Include="..\..\srcSDL\video\winrt\SDL_winrtkeyboard.cpp" />
+    <ClCompile Include="..\..\srcSDL\video\winrt\SDL_winrtmouse.cpp" />
+    <ClCompile Include="..\..\srcSDL\video\winrt\SDL_winrtopengles.cpp" />
+    <ClCompile Include="..\..\srcSDL\video\winrt\SDL_winrtpointerinput.cpp" />
+    <ClCompile Include="..\..\srcSDL\video\winrt\SDL_winrtvideo.cpp" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11clipboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11dyn.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11events.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11framebuffer.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11keyboard.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11messagebox.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11modes.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11mouse.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11opengl.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11opengles.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11shape.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11touch.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11video.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11window.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\SDL_x11xinput2.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\edid-parse.c" />
+    <ClCompile Include="..\..\srcSDL\video\x11\imKStoUCS.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

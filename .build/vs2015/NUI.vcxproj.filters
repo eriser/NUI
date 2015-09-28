@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="controls">
+      <UniqueIdentifier>{19EEB342-05BB-0E4E-2ED4-FCF51A0044DC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\NUI\Base.h" />
+    <ClInclude Include="..\..\src\NUI\Config.h" />
+    <ClInclude Include="..\..\src\NUI\Control.h" />
+    <ClInclude Include="..\..\src\NUI\Events.h" />
+    <ClInclude Include="..\..\src\NUI\Graphics.h" />
+    <ClInclude Include="..\..\src\NUI\NUI.h" />
+    <ClInclude Include="..\..\src\NUI\controls\Box.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\Button.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\CheckBox.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\ComboBox.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\ListBox.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\Menu.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\Root.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\ScrollBar.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\TextBox.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\TreeView.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\NUI\controls\Window.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\NUI\Control.cpp" />
+    <ClCompile Include="..\..\src\NUI\Graphics.cpp" />
+    <ClCompile Include="..\..\src\NUI\controls\Box.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\Button.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\CheckBox.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\ComboBox.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\ListBox.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\Menu.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\Root.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\ScrollBar.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\TextBox.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\TreeView.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\NUI\controls\Window.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
