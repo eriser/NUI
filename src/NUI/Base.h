@@ -215,13 +215,13 @@ struct Vec2
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-struct RGB
+struct RGBColor
 {
   float r, g, b;
 
-  RGB(): r(1.0f), g(1.0f), b(1.0f) { }
-  RGB(float _r, float _g, float _b): r(_r), g(_g), b(_b) { }
-  RGB(unsigned rgb)
+  RGBColor(): r(1.0f), g(1.0f), b(1.0f) { }
+  RGBColor(float _r, float _g, float _b): r(_r), g(_g), b(_b) { }
+  RGBColor(unsigned rgb)
   {
     r = static_cast<float>((rgb >> 16) & 0xFF) / 255.0f;
     g = static_cast<float>((rgb >> 8) & 0xFF) / 255.0f;
@@ -230,12 +230,12 @@ struct RGB
 
   void set(float _r, float _g, float _b) { r = _r; g = _g; b = _b; }
 
-  RGB operator+(float coef) const { return RGB(r + coef, g + coef, b + coef); }
-  RGB operator-(float coef) const { return RGB(r - coef, g - coef, b - coef); }
-  RGB operator*(float coef) const { return RGB(r * coef, g * coef, b * coef); }
+  RGBColor operator+(float coef) const { return RGBColor(r + coef, g + coef, b + coef); }
+  RGBColor operator-(float coef) const { return RGBColor(r - coef, g - coef, b - coef); }
+  RGBColor operator*(float coef) const { return RGBColor(r * coef, g * coef, b * coef); }
 
-  bool operator==(const RGB &rgb) const { return r == rgb.r && g == rgb.g && b == rgb.b; }
-  bool operator!=(const RGB &rgb) const { return r != rgb.r || g != rgb.g || b != rgb.b; }
+  bool operator==(const RGBColor &rgb) const { return r == rgb.r && g == rgb.g && b == rgb.b; }
+  bool operator!=(const RGBColor &rgb) const { return r != rgb.r || g != rgb.g || b != rgb.b; }
 
   NVGcolor nvg() const { return nvgRGBf(r, g, b); }
   NVGcolor nvg(float coef) const { return nvgRGBf(r * coef, g * coef, b * coef); }

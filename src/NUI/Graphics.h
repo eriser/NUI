@@ -46,16 +46,16 @@ struct Graphics
         CheckBoxSize = 18,
       };
 
-      RGB color = DefaultColor;
-      RGB secondaryColor = DefaultSecondaryColor;
-      RGB textColor = DefaultTextColor;
+      RGBColor color = DefaultColor;
+      RGBColor secondaryColor = DefaultSecondaryColor;
+      RGBColor textColor = DefaultTextColor;
       int textSize = DefaultTextSize;
 
       typedef nui::Ptr<Style> Ptr;
 
       Style() : Object() { }
-      explicit Style(const RGB &c) : Object(), color(c), secondaryColor(c) { }
-      Style(const RGB &c, const RGB &secondary) : Object(), color(c), secondaryColor(secondary) { }
+      explicit Style(const RGBColor &c) : Object(), color(c), secondaryColor(c) { }
+      Style(const RGBColor &c, const RGBColor &secondary) : Object(), color(c), secondaryColor(secondary) { }
 
     protected:
       virtual ~Style() { }
