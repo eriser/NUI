@@ -22,6 +22,8 @@
 #ifndef _SDL_main_h
 #define _SDL_main_h
 
+#if 0
+
 #include "SDL_stdinc.h"
 
 /**
@@ -149,6 +151,8 @@ extern DECLSPEC int SDLCALL SDL_WinRTRunApp(int (*mainFunction)(int, char **), v
 }
 #endif
 #include "close_code.h"
+
+#endif
 
 #endif /* _SDL_main_h */
 

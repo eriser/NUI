@@ -195,5 +195,6 @@ FakesAssemblies/
 # Visual Studio 6 workspace options file
 *.opt
 
-# Ignore Premake executable
+# Ignore Premake
+.build/
 premake5.exe

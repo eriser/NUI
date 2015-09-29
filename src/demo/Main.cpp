@@ -5,6 +5,8 @@
 #include <SDL.h>
 #include <glew/glew.h>
 
+#include "gl2d.h"
+
 #include "Cursors.h"
 
 #include "NUI/NUI.h"
@@ -29,6 +31,8 @@ SDL_Cursor *g_CursorResizeLR = nullptr;
 SDL_Cursor *g_CursorResizeRL = nullptr;
 
 NVGcontext *g_NVGcontext = nullptr;
+
+gl2d::context *g_Context2D = nullptr;
 
 uint64_t g_TickOffset = 0;
 uint64_t g_LastTickCount = 0;
@@ -102,6 +106,12 @@ void tick()
   g_Root->draw();
 
   nvgEndFrame(g_NVGcontext);
+
+  g_Context2D->frame_begin();
+  g_Context2D->move_to({0, 0});
+  g_Context2D->line_to({400, 300});
+  g_Context2D->frame_end();
+
   SDL_GL_SwapWindow(g_MainWindow);
 
   updateMouseCursor();
@@ -186,6 +196,8 @@ int main(int argc, char *argv[])
 
   // Initialize NanoVG
   g_NVGcontext = nvgCreateGL3(NVG_ANTIALIAS | NVG_STENCIL_STROKES);
+
+  g_Context2D = new gl2d::context();
 
   // Initialize UI
   g_Root = new nui::Root(g_NVGcontext);
@@ -423,6 +435,11 @@ int main(int argc, char *argv[])
 
   // Deinitialize SDL and quit
   SDL_Quit();
+
+  gl2d::context ctx;
+  ctx.color({ 1, 1, 1 });
+  ctx.move_to({ 0, 0 });
+  ctx.line_to({ 100, 100 });
 
   return 0;
 }

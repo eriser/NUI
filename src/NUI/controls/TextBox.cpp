@@ -245,6 +245,12 @@ void TextBox::loadTextFromFile(const std::string &fileName)
 {
   std::ifstream ifs(fileName.c_str(), std::ios_base::binary);
   
+  if (!ifs.is_open() || ifs.bad())
+  {
+    setText("");
+    return;
+  }
+
   ifs.seekg(0, std::ios_base::end);
   size_t size = static_cast<size_t>(ifs.tellg());
   ifs.seekg(0, std::ios_base::beg);
